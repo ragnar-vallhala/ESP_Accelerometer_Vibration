@@ -1,0 +1,33 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+
+unsigned char* float2byte(float &a){
+    unsigned int b = *((unsigned int*)&a);
+    unsigned char *c = new unsigned char[4];
+    c[0] = (b>>24)&0xff;
+    c[1] = (b>>16)&0xff;
+    c[2] = (b>>8)&0xff;
+    c[3] = (b)&0xff;
+    return c;
+    
+}
+
+float b2f(unsigned char* c){
+    unsigned int d ;
+    d = d|(((unsigned int)c[0])<<24);
+    d = d|(((unsigned int)c[1])<<16);
+    d = d|(((unsigned int)c[2])<<8);
+    d = d|(((unsigned int)c[3]));
+    float m = *((float*)&d);
+    return m;
+    
+}
+
+int main() {
+     float d = 87657;
+     unsigned char* e = float2byte(d);
+     float b = b2f(e);
+     delete[] e;
+     std::cout<<b;
+    return 0;
+}
